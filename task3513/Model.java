@@ -49,6 +49,7 @@ public class Model {
         }
         return emptyTitles;
     }
+    
     public void left() {
         if (isSaveNeeded) {
             saveState(getGameTiles());
@@ -62,18 +63,21 @@ public class Model {
         }
         isSaveNeeded = true;
     }
+    
     public void right() {
         saveState(getGameTiles());
         rotateGameTiles180();
         left();
         rotateGameTiles180();
     }
+    
     public void up() {
         saveState(getGameTiles());
         rotateGameTiles270();
         left();
         rotateGameTiles90();
     }
+    
     public void down() {
         saveState(getGameTiles());
         rotateGameTiles90();
@@ -120,6 +124,7 @@ public class Model {
 
         return hasDifference(tilesCopy, tiles);
     }
+    
     private boolean mergeTiles(Tile[] tiles) {
         Tile[] tilesCopy = tiles.clone();
         for (int i = 0; i < FIELD_WIDTH - 1; i++) {
@@ -175,11 +180,13 @@ public class Model {
         previousScores.push(score);
         isSaveNeeded = false;
     }
+    
     public void rollback() {
         if (previousStates.isEmpty() || previousScores.isEmpty()) return;
         gameTiles = previousStates.pop();
         score = previousScores.pop();
     }
+    
     public void randomMove() {
         switch ((int) (Math.random() * 4)) {
             case 0 :
